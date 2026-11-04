@@ -1,0 +1,27 @@
+# Dependencies
+node_modules/
+*/node_modules/
+
+# Python virtual environment & cache
+venv/
+server/venv/
+__pycache__/
+*/__pycache__/
+*.pyc
+
+# Build outputs
+dist/
+build/
+client/dist/
+
+# Environment files with secrets
+.env
+.env.local
+.env.*.local
+client/.env
+server/.env
+
+# OS files
+.DS_Store
+*/.DS_Store
+Thumbs.db
