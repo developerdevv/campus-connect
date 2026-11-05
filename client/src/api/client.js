@@ -14,11 +14,11 @@ export class ApiError extends Error {
 async function request(path, { method = 'GET', body, signal } = {}) {
   let res
   try {
-    res = await fetch(`/api${path}`, {
+    const API_BASE = import.meta.env.VITE_API_PROXY || ''
+    res = await fetch(`${API_BASE}/api${path}`, {
       method,
       signal,
       headers: { 'Content-Type': 'application/json', Accept: 'application/json' },
-      credentials: 'include',
       body: body ? JSON.stringify(body) : undefined,
     })
   } catch (err) {
@@ -400,11 +400,11 @@ export const api = {
     const q = (params.q || '').toLowerCase()
     const filtered = q
       ? rows.filter(
-          (r) =>
-            r.attendee.name.toLowerCase().includes(q) ||
-            r.attendee.email.toLowerCase().includes(q) ||
-            r.attendee.college.toLowerCase().includes(q),
-        )
+        (r) =>
+          r.attendee.name.toLowerCase().includes(q) ||
+          r.attendee.email.toLowerCase().includes(q) ||
+          r.attendee.college.toLowerCase().includes(q),
+      )
       : rows
 
     return {
